@@ -6,14 +6,6 @@ A full-stack Library Management application built with **ASP.NET Core Web API** 
 
 This application allows users to manage libraries and books through a clean, responsive web interface. It includes authentication guards, CRUD operations for both libraries and books, and an admin panel.
 
-## 🏗️ Architecture
-
-```
-LibMgmt/
-├── LibMgmtAPI/          # ASP.NET Core Web API (Backend)
-├── LibMgmtApp/          # Angular 21 (Frontend)
-└── SQlQueries/          # Database setup scripts
-```
 
 ## ⚙️ Tech Stack
 
@@ -103,47 +95,5 @@ The app will be available at **http://localhost:4200**.
 | PUT | `/api/book/updatebook/{id}` | Update a book |
 | DELETE | `/api/book/deletebook/{id}` | Delete a book |
 
-## 📁 Project Structure
 
-### Backend (`LibMgmtAPI`)
-```
-LibMgmtAPI/
-├── Controllers/         # API controllers (Book, Library)
-├── Data/                # Database helper (ADO.NET)
-├── Interfaces/          # Service interfaces
-├── Models/              # Data models (Book, Library)
-├── Services/            # Business logic implementations
-├── Program.cs           # App entry point & DI configuration
-└── appsettings.json     # Configuration
-```
 
-### Frontend (`LibMgmtApp`)
-```
-LibMgmtApp/src/app/
-├── components/          # UI components
-│   ├── add-book/        # Add book form
-│   ├── add-library/     # Add library form
-│   ├── admin/           # Admin dashboard
-│   ├── book/            # Books list view
-│   ├── delete-book/     # Delete book confirmation
-│   ├── delete-library/  # Delete library confirmation
-│   ├── edit-book/       # Edit book form
-│   ├── edit-library/    # Edit library form
-│   ├── error/           # 404 error page
-│   ├── footer/          # Footer component
-│   ├── home/            # Home page
-│   ├── library/         # Libraries list view
-│   ├── login/           # Login page
-│   └── navbar/          # Navigation bar
-├── guards/              # Route guards (Auth)
-├── models/              # TypeScript models
-└── services/            # HTTP services (Book, Library, Auth)
-```
-
-## 🔐 Authentication
-
-The app uses a client-side auth guard to protect routes. Users must log in before accessing the main application features.
-
-## 📝 License
-
-This project is for educational/personal use.
