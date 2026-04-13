@@ -1,0 +1,20 @@
+.text-brown {
+  color: #8b5a2b;
+}
+
+.dashboard-card {
+  cursor: pointer;
+  background-color: #3e2723;
+  color: white;
+  border-radius: 15px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dashboard-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 8px 20px rgba(0,0,0,0.5);
+}
+
+.card-body i {
+  color: #d7ccc8;
+}

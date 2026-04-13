@@ -1,0 +1,70 @@
+<div class="container mt-4">
+
+  <h2 class="text-brown mb-3">Libraries</h2>
+
+  <div class="input-group mb-3 shadow-sm">
+    <input class="form-control"
+           [(ngModel)]="searchValue"
+           (ngModelChange)="searchLibrary()"
+           placeholder="Enter Library Name">
+
+  </div>
+
+  <div *ngIf="loadError" class="alert alert-danger">
+    Libraries could not be loaded. Please try again later.
+  </div>
+
+  <div *ngIf="notFound" class="alert alert-danger">
+    Library not found
+  </div>
+
+  <button class="btn bg-brown text-white mb-3" routerLink="/libraries/add">
+    <i class="bi bi-plus-circle me-2"></i> Add Library
+  </button>
+    
+  
+  <div class="row">
+    <div class="col-md-4 mb-3" *ngFor="let lib of libraries">
+
+      <div class="card p-3 shadow-sm">
+
+        <div class="mb-2">
+
+          <h5 class="text-brown mb-1">{{ lib.name }}</h5>
+
+          <div class="d-flex align-items-center gap-3">
+
+            <a class="text-brown fs-5"
+               style="cursor:pointer"
+               (click)="toggleDetails(lib)">
+              <i class="bi"
+                 [ngClass]="lib.showDetails ? 'bi-eye-slash' : 'bi-eye'"></i>
+            </a>
+
+            <a [routerLink]="['/libraries/edit', lib.libraryId]"
+               class="text-brown fs-5"
+               title="Edit">
+              <i class="bi bi-pencil-square"></i>
+            </a>
+
+            <a [routerLink]="['/libraries/delete', lib.libraryId]"
+               class="text-danger fs-5"
+               title="Delete">
+              <i class="bi bi-trash"></i>
+            </a>
+
+          </div>
+
+        </div>
+
+        <div *ngIf="lib.showDetails" class="mt-2">
+          <p><b>Address:</b> {{ lib.address }}</p>
+          <p><b>Capacity:</b> {{ lib.maximumCapacity }}</p>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+</div>

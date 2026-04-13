@@ -1,0 +1,20 @@
+body {
+  background-color: #f5f0eb;
+}
+
+.bg-brown {
+  background-color: #4e342e !important;
+}
+
+.text-brown {
+  color: #4e342e;
+}
+
+.card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 5px 15px rgba(0,0,0,0.2);
+}

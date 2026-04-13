@@ -1,0 +1,72 @@
+<div class="container mt-5 col-md-5">
+
+  <div class="card p-4 shadow">
+
+    <h3 class="text-brown mb-3 text-center">Edit Library</h3>
+
+    <label class="text-brown fw-bold">Library Name</label>
+    <input class="form-control mb-1"
+           [(ngModel)]="library.name"
+           (ngModelChange)="isDirty = true; checkDuplicate()"
+           placeholder="Enter library name">
+
+    <small class="text-danger" *ngIf="library.name.trim() === ''">
+      Library name is required
+    </small>
+
+    <label class="text-brown fw-bold">Address</label>
+    <input class="form-control mb-1"
+           [(ngModel)]="library.address"
+           (ngModelChange)="isDirty = true; checkDuplicate()"
+           placeholder="Enter address">
+
+    <small class="text-danger" *ngIf="library.address.trim() === ''">
+      Address is required
+    </small>
+
+    <label class="text-brown fw-bold">Maximum Capacity</label>
+    <input type="number"
+           min="1"
+           class="form-control mb-1"
+           [(ngModel)]="library.maximumCapacity"
+           (ngModelChange)="isDirty = true"
+           placeholder="Enter capacity">
+
+    <small class="text-danger" *ngIf="library.maximumCapacity < 1">
+      Maximum capacity must be at least 1
+    </small>
+
+    <small class="text-danger" *ngIf="isDuplicate">
+      This library already exists
+    </small>
+
+    <div class="d-flex justify-content-center gap-2 mt-3">
+
+      <button class="btn bg-brown text-white"
+              (click)="updateLibrary()"
+              [disabled]="
+                !isDirty ||
+                library.name.trim() === '' ||
+                library.address.trim() === '' ||
+                library.maximumCapacity < 1 ||
+                isDuplicate
+              "
+              [class.opacity-50]="
+                !isDirty ||
+                library.name.trim() === '' ||
+                library.address.trim() === '' ||
+                library.maximumCapacity < 1 ||
+                isDuplicate
+              ">
+        Save
+      </button>
+
+      <button class="btn btn-outline-secondary" (click)="cancel()">
+        Cancel
+      </button>
+
+    </div>
+
+  </div>
+
+</div>

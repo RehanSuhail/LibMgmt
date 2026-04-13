@@ -1,0 +1,20 @@
+.nav-link {
+  transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+  transform: scale(1.05);
+  color: #ffc107 !important;
+}
+
+.nav-link.disabled,
+.navbar-brand.disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.dropdown-item.text-brown:hover {
+  background-color: #f5f0eb;
+  color: #4e342e;
+  font-weight: 500;
+}

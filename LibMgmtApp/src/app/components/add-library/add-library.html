@@ -1,0 +1,49 @@
+<div class="container mt-5 col-md-5">
+
+  <div class="card p-4 shadow">
+
+    <h3 class="text-brown mb-3 text-center">Add Library</h3>
+
+    <label class="text-brown fw-bold">Library Name</label>
+    <input class="form-control mb-3"
+           [(ngModel)]="library.name"
+           placeholder="Enter library name">
+
+    <label class="text-brown fw-bold">Address</label>
+    <input class="form-control mb-3"
+           [(ngModel)]="library.address"
+           placeholder="Enter address">
+
+    <label class="text-brown fw-bold">Maximum Capacity</label>
+    <input type="number"
+           min="1"
+           class="form-control mb-1"
+           [(ngModel)]="library.maximumCapacity"
+           placeholder="Enter capacity">
+
+    <small class="text-danger" *ngIf="library.maximumCapacity > 0 && library.maximumCapacity < 1">
+      Maximum capacity must be at least 1
+    </small>
+
+    <small class="text-danger" *ngIf="isDuplicate">
+      This library already exists
+    </small>
+
+    <div class="d-flex justify-content-center gap-2 mt-3">
+
+      <button class="btn bg-brown text-white"
+              (click)="saveLibrary()"
+              [disabled]="!isFormValid()"
+              [class.opacity-50]="!isFormValid()">
+        Save
+      </button>
+
+      <button class="btn btn-outline-secondary" (click)="cancel()">
+        Cancel
+      </button>
+
+    </div>
+
+  </div>
+
+</div>

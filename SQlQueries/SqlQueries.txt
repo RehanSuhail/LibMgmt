@@ -1,0 +1,86 @@
+1.Create Database
+
+CREATE DATABASE LibMgmtDb;
+GO
+USE LibMgmtDb;
+GO
+
+
+2.Create Libraries Table
+
+CREATE TABLE Libraries (
+    LibraryId INT PRIMARY KEY,
+    Name VARCHAR(150) NOT NULL,
+    Address VARCHAR(200) NOT NULL,
+    MaximumCapacity INT NOT NULL
+);
+
+
+3.Create Books Table
+
+CREATE TABLE Books (
+    BookId INT PRIMARY KEY,
+    Title VARCHAR(200) NOT NULL,
+    Author VARCHAR(150) NOT NULL,
+    Category VARCHAR(100) NOT NULL,
+    Price DECIMAL(10,2) NOT NULL,
+    LibraryId INT NOT NULL,
+    
+    CONSTRAINT FK_Books_Libraries
+    FOREIGN KEY (LibraryId) 
+    REFERENCES Libraries(LibraryId)
+    ON DELETE CASCADE
+);
+
+
+4.Insert into Libraries Table
+
+INSERT INTO Libraries (LibraryId, Name, Address, MaximumCapacity) VALUES
+(1, 'British Library', 'London, UK', 5000),
+(2, 'New York Public Library', 'New York, USA', 6000),
+(3, 'Library of Congress', 'Washington DC, USA', 7000),
+(4, 'Bodleian Library', 'Oxford, UK', 4000),
+(5, 'National Library of India', 'Kolkata, India', 4500),
+(6, 'Delhi Public Library', 'New Delhi, India', 3500),
+(7, 'Sydney State Library', 'Sydney, Australia', 3000),
+(8, 'Toronto Public Library', 'Toronto, Canada', 5500),
+(9, 'Singapore National Library', 'Singapore', 3200),
+(10, 'Tokyo Metropolitan Library', 'Tokyo, Japan', 4800);
+
+
+
+5.Insert into Books Table
+
+INSERT INTO Books (Title, Author, Category, Price, LibraryId) VALUES
+('Harry Potter and the Sorcerer''s Stone', 'J.K. Rowling', 'Fantasy', 399.00, 1),
+('The Hobbit', 'J.R.R. Tolkien', 'Fantasy', 350.00, 2),
+('To Kill a Mockingbird', 'Harper Lee', 'Fiction', 280.00, 3),
+('1984', 'George Orwell', 'Dystopian', 300.00, 4),
+('Pride and Prejudice', 'Jane Austen', 'Romance', 250.00, 5),
+('The Great Gatsby', 'F. Scott Fitzgerald', 'Classic', 270.00, 6),
+('Moby Dick', 'Herman Melville', 'Classic', 320.00, 7),
+('War and Peace', 'Leo Tolstoy', 'Historical', 500.00, 8),
+('The Alchemist', 'Paulo Coelho', 'Philosophy', 280.00, 9),
+('The Catcher in the Rye', 'J.D. Salinger', 'Fiction', 260.00, 10),
+('The Da Vinci Code', 'Dan Brown', 'Thriller', 350.00, 1),
+('Angels and Demons', 'Dan Brown', 'Thriller', 340.00, 2),
+('Sherlock Holmes', 'Arthur Conan Doyle', 'Mystery', 300.00, 3),
+('Inferno', 'Dan Brown', 'Thriller', 360.00, 4),
+('The Kite Runner', 'Khaled Hosseini', 'Drama', 330.00, 5),
+('A Brief History of Time', 'Stephen Hawking', 'Science', 450.00, 6),
+('Sapiens', 'Yuval Noah Harari', 'History', 420.00, 7),
+('Educated', 'Tara Westover', 'Biography', 380.00, 8),
+('Atomic Habits', 'James Clear', 'Self Help', 299.00, 9),
+('Think and Grow Rich', 'Napoleon Hill', 'Self Help', 250.00, 10),
+('The Hunger Games', 'Suzanne Collins', 'Sci-Fi', 340.00, 1),
+('Dune', 'Frank Herbert', 'Sci-Fi', 480.00, 2),
+('The Fault in Our Stars', 'John Green', 'Romance', 300.00, 3),
+('The Shining', 'Stephen King', 'Horror', 360.00, 4),
+('It', 'Stephen King', 'Horror', 400.00, 5),
+('Dracula', 'Bram Stoker', 'Horror', 280.00, 6),
+('Frankenstein', 'Mary Shelley', 'Horror', 260.00, 7),
+('Life of Pi', 'Yann Martel', 'Adventure', 310.00, 8),
+('The Book Thief', 'Markus Zusak', 'Historical Fiction', 350.00, 9),
+('Rich Dad Poor Dad', 'Robert Kiyosaki', 'Finance', 300.00, 10),
+('Clean Code', 'Robert C. Martin', 'Programming', 550.00, 2),
+('Introduction to Algorithms', 'Thomas H. Cormen', 'Programming', 650.00, 1);

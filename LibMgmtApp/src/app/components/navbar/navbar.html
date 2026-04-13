@@ -1,0 +1,63 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-brown shadow">
+  <div class="container">
+
+    <a class="navbar-brand fw-bold"
+       routerLink="/home"
+       [class.disabled]="!authService.isAuthenticated()">
+      LibMgmtApp
+    </a>
+
+    <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto">
+
+        <li class="nav-item">
+          <a class="nav-link"
+             routerLink="/home"
+             [class.disabled]="!authService.isAuthenticated()">
+            Home
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link"
+             routerLink="/libraries"
+             [class.disabled]="!authService.isAuthenticated()">
+            Libraries
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link"
+             routerLink="/books"
+             [class.disabled]="!authService.isAuthenticated()">
+            Books
+          </a>
+        </li>
+
+        <li class="nav-item dropdown" *ngIf="authService.isAuthenticated()">
+          <a class="nav-link dropdown-toggle"
+             role="button"
+             data-bs-toggle="dropdown">
+            <i class="bi bi-person-circle"></i> Admin
+          </a>
+
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li>
+              <a class="dropdown-item text-brown"
+   style="cursor:pointer"
+   (click)="logout()">
+  Logout
+</a>
+
+            </li>
+          </ul>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,63 @@
+<div class="container mt-5 col-md-5">
+
+  <div class="card p-4 shadow">
+
+    <h3 class="text-brown mb-3 text-center">Add Book</h3>
+
+    <label class="text-brown fw-bold">Title</label>
+    <input class="form-control mb-3"
+           [(ngModel)]="book.title"
+           placeholder="Enter title">
+
+    <label class="text-brown fw-bold">Author</label>
+    <input class="form-control mb-3"
+           [(ngModel)]="book.author"
+           placeholder="Enter author">
+
+    <label class="text-brown fw-bold">Category</label>
+    <input class="form-control mb-3"
+           [(ngModel)]="book.category"
+           placeholder="Enter category">
+
+    <label class="text-brown fw-bold">Price</label>
+    <input type="number"
+           class="form-control mb-3"
+           [(ngModel)]="book.price"
+           placeholder="Enter price">
+
+    <small class="text-danger" *ngIf="book.price > 0 && book.price < 1">
+      Price must be at least 1
+    </small>
+
+    <label class="text-brown fw-bold">Library</label>
+    <select class="form-select mb-3"
+            [(ngModel)]="book.libraryId">
+      <option value="0">-- Select Library --</option>
+      <option *ngFor="let lib of libraries"
+              [value]="lib.libraryId">
+        {{ lib.name }}
+      </option>
+    </select>
+
+    <small class="text-danger" *ngIf="isDuplicate">
+      This book already exists in the selected library
+    </small>
+
+    <div class="d-flex justify-content-center gap-2 mt-3">
+
+      <button class="btn bg-brown text-white"
+              (click)="saveBook()"
+              [disabled]="!isFormValid()"
+              [class.opacity-50]="!isFormValid()">
+        Save
+      </button>
+
+      <button class="btn btn-outline-secondary" (click)="cancel()">
+        Cancel
+      </button>
+
+    </div>
+
+  </div>
+
+</div>

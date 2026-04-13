@@ -1,0 +1,100 @@
+<div class="container mt-5 col-md-5">
+
+  <div class="card p-4 shadow">
+
+    <h3 class="text-brown mb-3 text-center">Edit Book</h3>
+
+    <label class="text-brown fw-bold">Title</label>
+    <input class="form-control mb-3"
+           [(ngModel)]="book.title"
+           (ngModelChange)="isDirty = true; isDuplicate = false"
+           placeholder="Enter title">
+
+    <small class="text-danger" *ngIf="book.title.trim() === ''">
+      Title is required
+    </small>
+
+    <label class="text-brown fw-bold">Author</label>
+    <input class="form-control mb-3"
+           [(ngModel)]="book.author"
+           (ngModelChange)="isDirty = true; isDuplicate = false"
+           placeholder="Enter author">
+
+    <small class="text-danger" *ngIf="book.author.trim() === ''">
+      Author is required
+    </small>
+
+    <label class="text-brown fw-bold">Category</label>
+    <input class="form-control mb-3"
+           [(ngModel)]="book.category"
+           (ngModelChange)="isDirty = true; isDuplicate = false"
+           placeholder="Enter category">
+
+    <small class="text-danger" *ngIf="book.category.trim() === ''">
+      Category is required
+    </small>
+
+    <label class="text-brown fw-bold">Price</label>
+    <input type="number"
+           class="form-control mb-3"
+           [(ngModel)]="book.price"
+           (ngModelChange)="isDirty = true; isDuplicate = false"
+           placeholder="Enter price">
+
+    <small class="text-danger" *ngIf="book.price < 1">
+      Price must be at least 1
+    </small>
+
+    <label class="text-brown fw-bold">Library</label>
+    <select class="form-select mb-3"
+            [(ngModel)]="book.libraryId"
+            (ngModelChange)="isDirty = true; isDuplicate = false">
+      <option value="0">-- Select Library --</option>
+      <option *ngFor="let lib of libraries"
+              [value]="lib.libraryId">
+        {{ lib.name }}
+      </option>
+    </select>
+
+    <small class="text-danger" *ngIf="book.libraryId === 0">
+      Please select a library
+    </small>
+
+    <small class="text-danger" *ngIf="isDuplicate">
+      This book already exists in the selected library
+    </small>
+
+    <div class="d-flex justify-content-center gap-2 mt-3">
+
+      <button class="btn bg-brown text-white"
+              (click)="updateBook()"
+              [disabled]="
+                !isDirty ||
+                book.title.trim() === '' ||
+                book.author.trim() === '' ||
+                book.category.trim() === '' ||
+                book.price < 1 ||
+                book.libraryId === 0 ||
+                isDuplicate
+              "
+              [class.opacity-50]="
+                !isDirty ||
+                book.title.trim() === '' ||
+                book.author.trim() === '' ||
+                book.category.trim() === '' ||
+                book.price < 1 ||
+                book.libraryId === 0 ||
+                isDuplicate
+              ">
+        Save
+      </button>
+
+      <button class="btn btn-outline-secondary" (click)="cancel()">
+        Cancel
+      </button>
+
+    </div>
+
+  </div>
+
+</div>

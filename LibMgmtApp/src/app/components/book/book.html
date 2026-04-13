@@ -1,0 +1,76 @@
+<div class="container mt-4">
+
+  <h2 class="text-brown mb-3">Books</h2>
+
+  <div class="input-group mb-3 shadow-sm">
+    <input class="form-control"
+           [(ngModel)]="searchValue"
+           (ngModelChange)="searchBook()"
+           placeholder="Enter Book Name">
+
+  </div>
+
+  <div *ngIf="loadError" class="alert alert-danger">
+    Books could not be loaded. Please try again later.
+  </div>
+
+  <div *ngIf="notFound" class="alert alert-danger">
+    Book not found
+  </div>
+
+  <button class="btn bg-brown text-white mb-3" routerLink="/books/add">
+    <i class="bi bi-plus-circle me-2"></i> Add Book
+  </button>
+
+  <div *ngFor="let group of groupedBooks">
+
+    <h4 class="text-brown mt-4 mb-2">
+      <i class="bi bi-building me-2"></i> {{ group.libraryName }}
+    </h4>
+
+    <ul class="list-group">
+
+      <li class="list-group-item mb-2 shadow-sm"
+          *ngFor="let b of group.books">
+
+        <div class="d-flex justify-content-between align-items-center">
+          <h5 class="text-brown mb-0">{{ b.title }}</h5>
+
+          <div class="d-flex align-items-center gap-3">
+
+            <a class="text-brown fs-5"
+               style="cursor:pointer"
+               (click)="toggleDetails(b)">
+              <i class="bi"
+                 [ngClass]="b.showDetails ? 'bi-eye-slash' : 'bi-eye'"></i>
+            </a>
+
+            <a [routerLink]="['/books/edit', b.bookId]"
+               class="text-brown fs-5"
+               title="Edit">
+              <i class="bi bi-pencil-square"></i>
+            </a>
+
+            <a [routerLink]="['/books/delete', b.bookId]"
+               class="text-danger fs-5"
+               title="Delete">
+              <i class="bi bi-trash"></i>
+            </a>
+
+          </div>
+        </div>
+
+        <div *ngIf="b.showDetails" class="mt-2">
+          <p><b>Author:</b> {{ b.author }}</p>
+          <p><b>Category:</b> {{ b.category }}</p>
+          <p><b>Price:</b> ₹{{ b.price }}</p>
+          <p><b>Library:</b> {{ b.libraryName }}</p>
+        </div>
+
+      </li>
+
+    </ul>
+
+  </div>
+
+</div>
